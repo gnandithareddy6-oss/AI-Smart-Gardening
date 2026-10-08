@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7ef">
+    <meta name="description" content="A friendly AI gardening companion for plant problems, growing advice, and personalized care schedules.">
+    <title>Sprout — your garden companion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#" aria-label="Sprout home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none"><path d="M18 29V16m0 7c0-7-5-11-12-11 0 7 4 12 12 12Zm0-6c0-6 4-10 11-10 0 7-4 11-11 11Z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>sprout<span class="brand-period">.</span></span>
+        </a>
+
+        <div class="sidebar-label">YOUR GARDEN</div>
+        <nav class="nav-list">
+          <button class="nav-item active" type="button" data-view="home">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"/></svg>
+            <span>Overview</span>
+          </button>
+          <button class="nav-item" type="button" data-view="schedule">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18m-13 5h3"/></svg>
+            <span>Care schedule</span><span class="nav-badge">3</span>
+          </button>
+          <button class="nav-item" type="button" data-view="plants">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-9m0 3C5 15 4 10 4 5c5 0 9 2 9 8m-1 1c0-6 3-9 8-10 1 6-1 10-8 11"/></svg>
+            <span>My plants</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-label help-label">GARDEN HELP</div>
+        <nav class="nav-list">
+          <button class="nav-item" type="button" data-prompt="Help me figure out what is wrong with my plant">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.3 1.7c-1.1 1.1-1.9 1.5-1.9 3m0 3h.01"/></svg>
+            <span>Plant doctor</span>
+          </button>
+          <button class="nav-item" type="button" data-prompt="Recommend an easy plant for my home">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-8m0 3C5 17 4 12 4 7c5 0 9 2 9 8m-1 1c0-6 3-9 8-10 1 6-1 10-8 11"/></svg>
+            <span>Find a plant</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-spacer"></div>
+        <div class="sidebar-tip">
+          <span class="tip-sparkle" aria-hidden="true">✳</span>
+          <p class="tip-title">A little garden wisdom</p>
+          <p class="tip-copy">Check the soil before you water. Your finger is a surprisingly good moisture meter.</p>
+        </div>
+        <button class="profile-button" type="button" aria-label="Garden profile">
+          <span class="avatar">J</span>
+          <span class="profile-text"><strong>Jamie Parker</strong><small>Weekend gardener</small></span>
+          <span class="profile-dots" aria-hidden="true">···</span>
+        </button>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumb"><span>My garden</span><span class="crumb-slash">/</span><strong id="page-label">Overview</strong></div>
+          <div class="topbar-actions">
+            <span class="weather-pill"><span aria-hidden="true">☀</span> <span>Sunny today</span><span class="weather-temp">24°</span></span>
+            <button class="icon-button" id="notifications-button" type="button" aria-label="Notifications">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 12h4"/></svg>
+              <span class="notification-dot"></span>
+            </button>
+          </div>
+        </header>
+
+        <div class="page-content" id="page-content">
+          <section class="welcome-row">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR GARDEN, GROWING</p>
+              <h1>Good morning, Jamie <span class="wave" aria-hidden="true">✳</span></h1>
+              <p class="welcome-subtitle">A little care goes a long way. What can I help you grow today?</p>
+            </div>
+            <button class="date-button" id="today-button" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+              <span id="today-date"></span>
+            </button>
+          </section>
+
+          <section class="dashboard-grid">
+            <div class="chat-card">
+              <div class="chat-heading">
+                <div class="assistant-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none"><path d="M18 29V16m0 7c0-7-5-11-12-11 0 7 4 12 12 12Zm0-6c0-6 4-10 11-10 0 7-4 11-11 11Z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="chat-heading-copy">
+                  <h2>Ask Sprout</h2>
+                  <p><span class="online-dot" id="model-status"></span><span id="model-status-text">Connecting to qwen2.5:3b...</span></p>
+                </div>
+                <button class="chat-menu" type="button" aria-label="More chat options">···</button>
+              </div>
+
+              <div class="chat-messages" id="chat-messages" aria-live="polite" aria-label="Conversation">
+                <div class="message assistant-message">
+                  <span class="message-avatar">✿</span>
+                  <div>
+                    <div class="message-bubble">
+                      <p>Hi Jamie! I’m Sprout, your garden sidekick. I can help you troubleshoot plant problems, pick the right plants, and make a care routine that fits your life.</p>
+                      <p>What’s growing on? <span class="leaf-emoji" aria-hidden="true">🌱</span></p>
+                    </div>
+                    <span class="message-time">Sprout · just now</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="suggested-prompts" id="suggested-prompts">
+                <span class="suggested-label">TRY ASKING</span>
+                <div class="prompt-list">
+                  <button class="prompt-chip" type="button" data-prompt="Why are my plant's leaves turning yellow?">🍂 Yellow leaves</button>
+                  <button class="prompt-chip" type="button" data-prompt="How often should I water my plants?">💧 Watering tips</button>
+                  <button class="prompt-chip" type="button" data-prompt="What are some easy plants for a low-light room?">🪴 Find my plant</button>
+                  <button class="prompt-chip" type="button" data-prompt="I see tiny bugs on my plant. How do I identify and treat them?">🔎 Spot a pest</button>
+                </div>
+              </div>
+
+              <form class="chat-composer" id="chat-form">
+                <label class="sr-only" for="chat-input">Ask Sprout a gardening question</label>
+                <input id="chat-input" type="text" placeholder="Ask anything about your plants..." autocomplete="off">
+                <button class="send-button" type="submit" aria-label="Send message">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13"/></svg>
+                </button>
+              </form>
+              <p class="disclaimer">Powered by qwen2.5:3b on your computer. Always check product labels before treating plants.</p>
+            </div>
+
+            <aside class="right-column" aria-label="Garden summary">
+              <section class="garden-card plants-card">
+                <div class="section-title-row"><div><p class="card-eyebrow">YOUR LITTLE JUNGLE</p><h2>Plant shelf <span class="plant-count">04</span></h2></div><button class="text-link" type="button" data-view="plants">See all <span aria-hidden="true">→</span></button></div>
+                <div class="plant-list">
+                  <button class="plant-row" type="button" data-prompt="Give me care tips for a monstera.">
+                    <span class="plant-icon monstera-icon" aria-hidden="true">🌿</span><span class="plant-info"><strong>Monstera</strong><small>Living room · bright indirect</small></span><span class="plant-status status-happy" aria-label="Looking happy"></span>
+                  </button>
+                  <button class="plant-row" type="button" data-prompt="How should I care for my snake plant?">
+                    <span class="plant-icon snake-icon" aria-hidden="true">🪴</span><span class="plant-info"><strong>Snake plant</strong><small>Bedroom · low light</small></span><span class="plant-status status-happy" aria-label="Looking happy"></span>
+                  </button>
+                  <button class="plant-row" type="button" data-prompt="My peace lily has drooping leaves. What should I do?">
+                    <span class="plant-icon lily-icon" aria-hidden="true">🌱</span><span class="plant-info"><strong>Peace lily</strong><small>Kitchen · medium light</small></span><span class="plant-status status-attention" aria-label="Needs attention"></span>
+                  </button>
+                  <button class="plant-row" type="button" data-prompt="How do I keep my pothos healthy?">
+                    <span class="plant-icon pothos-icon" aria-hidden="true">🍃</span><span class="plant-info"><strong>Golden pothos</strong><small>Office · indirect light</small></span><span class="plant-status status-happy" aria-label="Looking happy"></span>
+                  </button>
+                </div>
+                <button class="add-plant-button" type="button" data-prompt="Help me choose a new plant for my home.">＋ <span>Add a plant</span></button>
+              </section>
+
+              <section class="garden-card schedule-card" id="schedule-card">
+                <div class="section-title-row"><div><p class="card-eyebrow">UP NEXT</p><h2>Care schedule</h2></div><button class="icon-button small-icon" type="button" data-view="schedule" aria-label="Open care schedule"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button></div>
+                <div class="schedule-date"><span class="date-marker"></span><span id="schedule-date-label">TODAY, 7 OCT</span></div>
+                <div id="schedule-tasks">
+                  <label class="task-row"><input type="checkbox" class="task-checkbox"><span class="custom-checkbox"></span><span class="task-copy"><strong>Check peace lily soil</strong><small>Water if top inch feels dry</small></span><span class="task-icon">💧</span></label>
+                  <label class="task-row"><input type="checkbox" class="task-checkbox"><span class="custom-checkbox"></span><span class="task-copy"><strong>Rotate the monstera</strong><small>A quarter turn toward the light</small></span><span class="task-icon">☀️</span></label>
+                </div>
+                <button class="schedule-link" type="button" data-view="schedule">Build my care schedule <span aria-hidden="true">→</span></button>
+              </section>
+            </aside>
+          </section>
+
+          <section class="bottom-row" aria-label="Gardening topics">
+            <div class="bottom-copy"><span class="bottom-sparkle" aria-hidden="true">✳</span><div><strong>Grow with confidence</strong><span>Small steps. Healthier plants. Happier you.</span></div></div>
+            <div class="topic-links">
+              <button type="button" data-prompt="How do I choose the right soil for houseplants?">Soil &amp; fertilizer <span>↗</span></button>
+              <button type="button" data-prompt="How can I tell if this is a plant disease or a pest?">Pests &amp; diseases <span>↗</span></button>
+              <button type="button" data-view="schedule">Personalized care <span>↗</span></button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <div class="modal-backdrop" id="schedule-modal" hidden>
+      <section class="schedule-dialog" role="dialog" aria-modal="true" aria-labelledby="schedule-dialog-title" aria-describedby="schedule-dialog-description">
+        <button class="modal-close" id="close-schedule" type="button" aria-label="Close schedule builder">×</button>
+        <span class="modal-icon" aria-hidden="true">✳</span>
+        <p class="card-eyebrow">A ROUTINE THAT FITS YOUR PLANTS</p>
+        <h2 id="schedule-dialog-title">Build your care schedule</h2>
+        <p id="schedule-dialog-description" class="modal-description">Tell me what you’re growing and where it lives. Sprout will make a gentle checklist based on your plants and light—not a rigid watering timer.</p>
+        <form id="schedule-form">
+          <label class="field-label" for="schedule-plants">Plant name(s)<span>Separate multiple plants with commas</span></label>
+          <input id="schedule-plants" name="plants" type="text" maxlength="120" placeholder="e.g. monstera, basil" required>
+          <label class="field-label" for="schedule-light">Usual light in that spot</label>
+          <select id="schedule-light" name="light">
+            <option value="bright indirect">Bright, indirect light</option>
+            <option value="low">Low light</option>
+            <option value="direct">Direct sun</option>
+          </select>
+          <button class="build-button" type="submit">Make my care plan <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="modal-footnote">Watering reminders are soil checks. Always check each plant’s needs before watering.</p>
+      </section>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
